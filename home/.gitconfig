@@ -1,0 +1,18 @@
+[user]
+    name  = Christian M. Austria
+    email = austria.christian.031490@gmail.com
+[core]
+    editor = vim
+	autocrlf = input
+[color]
+	ui = auto
+[alias]
+    sb = status -sb
+    # log
+    ol = log --oneline
+    # diff
+    d = diff
+    dc = diff --cached
+    dcc = diff --cached --check
+    # commit
+    cm = commit -m
