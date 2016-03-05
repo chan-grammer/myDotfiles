@@ -588,6 +588,12 @@ cnoremap w!! w !sudo tee % > /dev/null
 command! -nargs=+ -complete=command TabMessage :call TabMessage(<q-args>)
 
 "}}}
+" workflow related mappings{{{
+
+" select from the ready-made snippets
+nmap <leader>sp :read ~/Projects/snippets/
+
+" }}}
 " autocommands{{{
 
 if has("autocmd")
