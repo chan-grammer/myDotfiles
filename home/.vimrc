@@ -36,7 +36,8 @@ Plugin 'tomtom/tcomment_vim'
 "NerdTree
 Plugin 'scrooloose/nerdtree'
 "Vim-Airline
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 "SuperTab
 Plugin 'ervandew/supertab'
 "Match_tag_always
@@ -70,7 +71,7 @@ Plugin 'jelera/vim-javascript-syntax'
 "Vim-CSS3-Syntax
 Plugin 'hail2u/vim-css3-syntax'
 "TERN-JS
-Plugin 'marijnh/tern_for_vim'
+" Plugin 'marijnh/tern_for_vim'
 "Tmux-Navigator
 Plugin 'christoomey/vim-tmux-navigator'
 "Vim-Jade
@@ -312,9 +313,10 @@ set foldcolumn=2
 
     " update only tags per save
     let g:easytags_file='~/.vim/tags'
-    let g:easytags_events=['BufWritePost']
+    let g:easytags_events=[]
+    let g:easytags_auto_update=0
     let g:easytags_auto_highlight=0
-    " write first on project-specific tag files, then fallback to the
+    " write first on the first 'tags' file seen, then fallback to the
     " global tags file if not found
     let g:easytags_dynamic_files=1
 
@@ -328,6 +330,10 @@ set foldcolumn=2
 " ULTISNIPS
     " split window vertically when editing
     let g:UltiSnipsEditSplit="vertical"
+    " what folder to store snippets when invoking :UltiSnipsEdit
+    let g:UltiSnipsSnippetsDir="~/.vim/mySnippets/"
+    " paths where UltiSnips will look up for
+    let g:UltiSnipsSnippetDirectories=["UltiSnips", "mySnippets"]
     " let g:UltiSnipsExpandTrigger="<tab>"
     " let g:UltiSnipsJumpForwardTrigger="<tab>"
     " let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
@@ -367,7 +373,7 @@ set foldcolumn=2
     " In this example: if the line exceeds 80 char line-length
     " Source : http://superuser.com/a/771578/349890
     highlight MarkLineLengthExcess ctermbg=magenta
-    call matchadd('MarkLineLengthExcess', '\%81v', 100)
+    " call matchadd('MarkLineLengthExcess', '\%81v', 100)
 
 " }}}
 " plugin mappings{{{
@@ -510,7 +516,8 @@ nnoremap <Down> <c-w>-
 nnoremap <Right> <c-w><
 nnoremap <Left> <c-w>>
 
-nmap <leader>r :vert resize<space>
+nmap <leader>rh :vert resize<space>
+nmap <leader>rv :resize<space>
 
 "tab keymaps
 "replace the tag map key
@@ -525,12 +532,16 @@ nnoremap <space> <c-w><c-w>_
 
 " show buffer list, and allows you to switch buffers
 nmap <leader>b :ls<cr>:b<space>
-nmap <leader>sb :ls<cr>:sb<space>
+nmap <leader>sb :ls<cr>:vert sb<space>
 
 " show tab list, and allows you to switch tab
 nmap <leader>tl :tabs<cr>:tabn<space>
-"allows you to move the tabs
+" allows you to move the tabs
 nmap <leader>tm :tabm <space>
+" moves to the last active tab
+let g:lasttab = 1
+nmap <leader>tb :exe "tabn ".g:lasttab<cr>
+au TabLeave * let g:lasttab = tabpagenr()
 
 " toggle highlight from search pattern
 nnoremap <leader>/ :set hlsearch!<cr>
@@ -538,19 +549,26 @@ nnoremap <leader>/ :set hlsearch!<cr>
 " reselecting changed or pasted text
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
+" opening files in the same directory of the current buffer
+nmap <leader>ef :e <c-r>=expand('%:p:h')<cr>/
+nmap <leader>tf :tabe <c-r>=expand('%:p:h')<cr>/
+nmap <leader>sf :vsp <c-r>=expand('%:p:h')<cr>/
+
 " Bash command shortcuts
 " shortcut for renaming
-nnoremap <leader>mv :!mv %:p %:p:h
+nmap <leader>mv :!mv %:p %:p:h
 " cd to the directory of the current file in buffer
-nnoremap <leader>cd :lcd %:h<cr>
+nmap <leader>cd :lcd %:h<cr>
 " shortcut for creating a directory
-nnoremap <leader>md :!mkdir -p
+nmap <leader>md :!mkdir -p %:p:h
 " shortcut for creating a directory
-nnoremap <leader>mf :!touch %:p:h
+nmap <leader>mf :!touch %:p:h
+
+nmap <leader>ft :set ft=
 
 "reselect indented block of text in vim
-vmap <leader>< <gv
-vmap <leader>> >gv
+vnoremap <leader>< <gv
+vnoremap <leader>> >gv
 
 " display the current path
 cnoremap <leader>p <c-r>=expand("%:p:h")<cr>
@@ -562,9 +580,6 @@ cnoremap <c-a> <home>
 cnoremap <c-e> <end>
 cnoremap <c-h> <s-left>
 cnoremap <c-l> <s-right>
-
-" shortcut for setting filetype
-cnoremap <leader>ft set ft=
 
 " saving readonly files
 cnoremap w!! w !sudo tee % > /dev/null
