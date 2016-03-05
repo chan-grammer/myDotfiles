@@ -1,0 +1,18 @@
+# LAMPP
+alias x="sudo /opt/lampp/xampp"
+alias xs="sudo /opt/lampp/xampp start"
+alias xx="sudo /opt/lampp/xampp stop"
+
+# DROPBOX
+alias dropbox="~/Downloads/dropbox.py"
+
+# Sourcing
+alias srczsh="source ~/.zshrc"
+alias srctmux="source ~/.tmux.conf"
+
+# LARAVEL
+alias art="php artisan"
+
+# PATHS
+alias notes="cd ~/Dropbox/notesToBeOrganized/laravel5/notes"
+alias projects="cd ~/Projects"
