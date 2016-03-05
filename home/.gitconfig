@@ -1,18 +1,17 @@
 [user]
-    name  = Christian M. Austria
-    email = austria.christian.031490@gmail.com
-[core]
-    editor = vim
-	autocrlf = input
-[color]
-	ui = auto
+	name = chan-grammer
+	email = austria.christian.031490@gmail.com
 [alias]
-    sb = status -sb
-    # log
-    ol = log --oneline
-    # diff
-    d = diff
-    dc = diff --cached
+	sb = status -sb
+	olc = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	ol = log --oneline
+	d =  diff
+	dc =  diff --cached
     dcc = diff --cached --check
-    # commit
     cm = commit -m
+[core]
+	editor = vim
+	autocrlf = input
+	excludesfile = /home/chan-grammer/.gitignore_global
+[diff]
+	mnemonicprefix = true
