@@ -16,3 +16,6 @@ alias art="php artisan"
 # PATHS
 alias notes="cd ~/Dropbox/notesToBeOrganized/laravel5/notes"
 alias projects="cd ~/Projects"
+
+# WORKFLOW
+alias workflow="mkdir -p workflow && cp ~/Projects/snippets/workflow/*.md workflow/"
