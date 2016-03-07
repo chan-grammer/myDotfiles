@@ -1,23 +1,23 @@
 [user]
-	name = chan-grammer
-	email = austria.christian.031490@gmail.com
+    name = chan-grammer
+    email = austria.christian.031490@gmail.com
 [alias]
-	sb = status -sb
-	ol = log --oneline
-	olc = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	d =  diff
+    sb = status -sb
+    ol = log --oneline
+    olc = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    d =  diff
     d-col = diff --color-words
-	dc =  diff --cached
-	dc-col =  diff --cached --color-words
+    dc =  diff --cached
+    dc-col =  diff --cached --color-words
     dcc = diff --cached --check
     cm = commit -m
 [core]
-	editor = vim
-	autocrlf = input
-	excludesfile = /home/chan-grammer/.gitignore_global
+    editor = vim
+    autocrlf = input
+    excludesfile = /home/chan-grammer/.gitignore_global
 [diff]
-	mnemonicprefix = true
-	renames = copies
+    mnemonicprefix = true
+    renames = copies
     renamelimit = 0
 [status]
-	showUntrackedFiles = all
+    showUntrackedFiles = all
